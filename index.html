@@ -1,0 +1,402 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>WAR 3020 | O Futuro da Guerra</title>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700;900&family=Rajdhani:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+ --bg:#050814;
+ --blue:#26d9ff;
+ --gold:#f6c968;
+ --purple:#a36aff;
+ --white:#f3f7ff;
+ --muted:#9baac4;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+ background:var(--bg);color:var(--white);
+ font-family:Rajdhani,sans-serif;overflow-x:hidden;
+}
+body:before{
+ content:"";position:fixed;inset:0;z-index:-2;
+ background:
+ radial-gradient(ellipse at 15% 15%,#103b6660,transparent 45%),
+ radial-gradient(ellipse at 90% 45%,#54218b35,transparent 45%),
+ linear-gradient(180deg,#080d1e,#03050d);
+}
+body:after{
+ content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;
+ opacity:.12;
+ background-image:radial-gradient(#9bcfff 1px,transparent 1px);
+ background-size:45px 45px;
+}
+header{
+ position:sticky;top:0;z-index:20;
+ display:flex;justify-content:space-between;align-items:center;
+ padding:17px 7%;
+ background:#050916eF;backdrop-filter:blur(20px);
+ border-bottom:1px solid #36cfff30;
+}
+.logo{font:900 22px Orbitron;letter-spacing:2px}
+.logo span{color:var(--blue)}
+nav{display:flex;gap:24px}
+nav a{color:#c4d0e4;text-decoration:none;font-weight:700;font-size:17px}
+nav a:hover{color:var(--blue)}
+.hero{
+ min-height:700px;display:flex;align-items:center;
+ justify-content:center;text-align:center;padding:90px 20px;
+ position:relative;overflow:hidden;
+ background:
+ linear-gradient(180deg,#05081455,#050814e8),
+ url('https://images.unsplash.com/photo-1519608487953-e999c86e7455?auto=format&fit=crop&w=1800&q=85') center/cover;
+}
+.hero:after{
+ content:"";position:absolute;inset:0;
+ background:radial-gradient(ellipse,transparent 20%,#050814aa 90%);
+ pointer-events:none;
+}
+.hero-content{position:relative;z-index:1;max-width:850px}
+.tag{
+ display:inline-block;padding:10px 22px;border:1px solid #31d9ff80;
+ border-radius:30px;color:var(--blue);letter-spacing:4px;
+ font-size:13px;font-weight:700;background:#071a2b99;
+}
+h1{
+ font:900 clamp(48px,10vw,110px) Orbitron;
+ line-height:1.05;margin:25px 0;
+ text-shadow:0 0 35px #24d8ff65;
+}
+h1 span{color:var(--blue)}
+.hero p{font-size:22px;color:#c1cce0;line-height:1.5}
+.actions{display:flex;justify-content:center;gap:15px;flex-wrap:wrap;margin-top:35px}
+.btn{
+ display:inline-block;text-decoration:none;text-align:center;
+ padding:15px 28px;border-radius:5px;font:700 14px Orbitron;
+ border:1px solid transparent;cursor:pointer;transition:.3s;
+}
+.btn-blue{background:var(--blue);color:#00111b;box-shadow:0 0 25px #00cfff30}
+.btn-blue:hover{box-shadow:0 0 35px var(--blue);transform:translateY(-3px)}
+.btn-outline{border-color:#38d9ff80;color:white;background:#07152599}
+.btn-outline:hover{background:#0c3850}
+.launch{
+ max-width:650px;margin:35px auto 0;padding:16px;
+ border:1px solid #ffffff25;border-radius:10px;
+ background:#07101dc9;backdrop-filter:blur(10px);
+}
+.launch strong{color:var(--gold);font-family:Orbitron}
+.launch p{font-size:16px;margin-top:5px}
+section{padding:90px 8%}
+.kicker{text-align:center;color:var(--blue);letter-spacing:5px;font-size:13px;font-weight:700}
+.title{
+ font:800 clamp(27px,5vw,43px) Orbitron;
+ text-align:center;margin:15px 0;
+}
+.title span{color:var(--blue)}
+.subtitle{text-align:center;color:var(--muted);font-size:20px;margin-bottom:45px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:22px}
+.card{
+ padding:30px;background:linear-gradient(145deg,#131f35,#080e1d);
+ border:1px solid #ffffff16;border-radius:12px;transition:.3s;
+}
+.card:hover{transform:translateY(-6px);border-color:#23d5ff88}
+.card .icon{font-size:35px}
+.card h3{font:700 18px Orbitron;color:var(--blue);margin:17px 0}
+.card p{color:#b5c4d9;font-size:19px;line-height:1.5}
+.event{
+ max-width:900px;margin:auto;overflow:hidden;
+ border:1px solid #278cbb88;border-radius:16px;
+ background:linear-gradient(120deg,#09172c,#102c4a,#091327);
+}
+.event-top{
+ background:linear-gradient(90deg,#0e90c7,#1854a2);
+ padding:12px;text-align:center;font:700 13px Orbitron;
+ letter-spacing:3px;
+}
+.event-body{padding:35px;text-align:center}
+.event h3{font:900 clamp(27px,5vw,43px) Orbitron;color:#65dfff}
+.event .reward{
+ font:800 25px Orbitron;color:#fff;margin:15px 0;
+ text-shadow:0 0 20px #00cfff;
+}
+.event p{color:#c2d5ed;font-size:20px;line-height:1.5}
+.reward-image{
+ width:100%;max-width:430px;height:180px;margin:25px auto;
+ border-radius:12px;border:1px solid #39d9ff66;
+ background:
+ radial-gradient(circle at 50% 50%,#1275c777,transparent 65%),
+ linear-gradient(130deg,#06152d,#102d55);
+ display:flex;align-items:center;justify-content:center;
+}
+.reward-image span{font:900 30px Orbitron;color:#a8eaff;text-shadow:0 0 25px #00bfff}
+.timer-note{font:700 13px Orbitron;color:var(--gold);margin-top:20px}
+.premium-section{
+ background:linear-gradient(180deg,#0b0c20,#100b24,#080b19);
+ border-top:1px solid #aa76ff22;border-bottom:1px solid #aa76ff22;
+}
+.premium-box{
+ max-width:900px;margin:auto;padding:35px;
+ border:1px solid #d0a34d88;border-radius:18px;
+ background:linear-gradient(135deg,#20162a,#101a30 50%,#201426);
+ box-shadow:0 0 70px #a56aff17;
+}
+.premium-heading{text-align:center}
+.premium-heading h3{font:900 32px Orbitron;color:var(--gold);margin:12px}
+.premium-heading p{color:#c7bad8;font-size:19px}
+.premium-card{
+ max-width:490px;min-height:255px;margin:35px auto;
+ padding:27px;border-radius:17px;position:relative;overflow:hidden;
+ background:linear-gradient(125deg,#141a33,#49306d,#17152c);
+ border:1px solid #e5bd71;
+ box-shadow:0 15px 45px #0008,0 0 30px #b37bff30;
+}
+.premium-card:after{
+ content:"";position:absolute;width:300px;height:300px;
+ border:1px solid #ffffff18;border-radius:50%;
+ right:-100px;top:-130px;box-shadow:0 0 0 20px #ffffff08,0 0 0 40px #ffffff05;
+}
+.card-brand{font:800 13px Orbitron;letter-spacing:3px;color:#e9d39d}
+.card-gem{font-size:48px;margin:30px 0 15px}
+.card-name{font:900 23px Orbitron;color:#fff}
+.card-bottom{display:flex;justify-content:space-between;margin-top:22px;color:#e9d39d;font:700 11px Orbitron;letter-spacing:2px}
+.premium-benefits{max-width:520px;margin:20px auto}
+.premium-benefits p{padding:9px;color:#e0d5ef;font-size:19px}
+.premium-benefits p span{color:var(--gold);margin-right:10px}
+.premium-status{
+ padding:15px;text-align:center;border-radius:8px;
+ background:#33271855;border:1px solid #b68a4380;
+ color:#f1ce8a;font:700 13px Orbitron;line-height:1.8;
+}
+.login-area{max-width:540px;margin:auto}
+.login-box{
+ padding:35px;border-radius:15px;
+ background:linear-gradient(145deg,#111d31,#080e1b);
+ border:1px solid #28d7ff55;text-align:center;
+}
+.login-box h3{font:800 22px Orbitron;margin:15px}
+.login-box p{color:var(--muted);font-size:18px}
+input{
+ width:100%;padding:16px;margin:22px 0;
+ background:#050b18;color:white;border:1px solid #334d6c;
+ border-radius:7px;font:600 17px Rajdhani;
+ outline:none;
+}
+input:focus{border-color:var(--blue)}
+.login-warning{font-size:14px!important;margin-top:20px;color:#e9c77f!important}
+#message{margin-top:15px;color:var(--blue);font-weight:700;font-size:17px}
+.faq{max-width:850px;margin:auto}
+details{
+ margin-bottom:13px;padding:20px;
+ border:1px solid #ffffff16;border-radius:9px;
+ background:#10182a;
+}
+summary{font:700 16px Orbitron;color:var(--blue);cursor:pointer}
+details p{font-size:18px;color:#bac9dc;margin-top:15px;line-height:1.5}
+footer{
+ padding:45px 15px;text-align:center;
+ border-top:1px solid #ffffff16;color:#8090aa;
+ background:#040710;
+}
+footer strong{color:var(--blue)}
+footer .logo{margin-bottom:17px}
+@media(max-width:650px){
+ header{flex-direction:column;gap:15px}
+ nav{gap:13px;flex-wrap:wrap;justify-content:center}
+ nav a{font-size:14px}
+ section{padding:70px 6%}
+ .hero{min-height:620px}
+ .premium-box{padding:20px}
+}
+</style>
+</head>
+<body>
+
+<header>
+ <div class="logo">WAR <span>3020</span></div>
+ <nav>
+  <a href="#inicio">Início</a>
+  <a href="#universo">Universo</a>
+  <a href="#lancamento">Lançamento</a>
+  <a href="#premium">Premium</a>
+  <a href="#resgate">Resgatar</a>
+  <a href="#ajuda">Ajuda</a>
+ </nav>
+</header>
+
+<main>
+<section class="hero" id="inicio">
+ <div class="hero-content">
+  <div class="tag">ESTÁ CHEGANDO • 3020</div>
+  <h1>WAR <span>3020</span></h1>
+  <p>O futuro não tem piedade. Prepare-se para entrar em uma nova era de combate, tecnologia e sobrevivência.</p>
+  <div class="actions">
+   <a href="#lancamento" class="btn btn-blue">PRÉ-LANÇAMENTO</a>
+   <a href="#universo" class="btn btn-outline">EXPLORAR UNIVERSO</a>
+  </div>
+  <div class="launch">
+   <strong>🚀 LANÇAMENTO PREVISTO: FEVEREIRO DE 2027</strong>
+   <p>Prepare seu equipamento. A batalha está chegando.</p>
+  </div>
+ </div>
+</section>
+
+<section id="universo">
+ <div class="kicker">BEM-VINDO AO FUTURO</div>
+ <h2 class="title">O UNIVERSO <span>WAR 3020</span></h2>
+ <p class="subtitle">Uma experiência Battle Royale futurista.</p>
+ <div class="grid">
+  <div class="card">
+   <div class="icon">⚔️</div>
+   <h3>BATTLE ROYALE</h3>
+   <p>Entre em combates futuristas e lute para conquistar a vitória.</p>
+  </div>
+  <div class="card">
+   <div class="icon">🌌</div>
+   <h3>ANO 3020</h3>
+   <p>Explore uma realidade tecnológica em um universo de ficção científica.</p>
+  </div>
+  <div class="card">
+   <div class="icon">🏆</div>
+   <h3>SEJA UMA LENDA</h3>
+   <p>Prepare sua identidade e construa sua história no campo de batalha.</p>
+  </div>
+ </div>
+</section>
+
+<section id="lancamento">
+ <div class="kicker">OPERAÇÃO ESPECIAL</div>
+ <h2 class="title">O PRIMEIRO <span>ACESSO</span></h2>
+ <p class="subtitle">Uma recompensa especial espera pelos primeiros jogadores.</p>
+ <div class="event">
+  <div class="event-top">EVENTO OFICIAL • PRÉ-LANÇAMENTO</div>
+  <div class="event-body">
+   <h3>CHAMA AZUL</h3>
+   <div class="reward">RECOMPENSA GRATUITA</div>
+   <p>Os jogadores que entrarem nas primeiras 24 horas após o lançamento oficial poderão resgatar um conjunto especial gratuito.</p>
+   <div class="reward-image"><span>🔥 CHAMA AZUL 🔥</span></div>
+   <p><strong>CONJUNTO CHAMA AZUL</strong></p>
+   <p>Uma recompensa especial para marcar o início da nova era.</p>
+   <div class="timer-note">DISPONIBILIDADE: PRIMEIRAS 24 HORAS DO LANÇAMENTO</div>
+   <div style="margin-top:25px">
+    <a href="#resgate" class="btn btn-blue">RESGATAR NO LANÇAMENTO</a>
+   </div>
+  </div>
+ </div>
+</section>
+
+<section class="premium-section" id="premium">
+ <div class="kicker" style="color:#f2ca7a">ACESSO EXCLUSIVO</div>
+ <h2 class="title">WAR <span style="color:#e9c77f">PREMIUM</span></h2>
+ <p class="subtitle">Não é apenas um cartão. É uma identidade.</p>
+ <div class="premium-box">
+  <div class="premium-heading">
+   <div style="font-size:40px">💎</div>
+   <h3>CARTÃO PREMIUM</h3>
+   <p>Entre para o lado exclusivo do WAR 3020.</p>
+  </div>
+  <div class="premium-card">
+   <div class="card-brand">WAR 3020 • EXCLUSIVE</div>
+   <div class="card-gem">💎</div>
+   <div class="card-name">PREMIUM ACCESS</div>
+   <div class="card-bottom">
+    <span>ELITE MEMBER</span>
+    <span>3020</span>
+   </div>
+  </div>
+  <div class="premium-benefits">
+   <p><span>✦</span> Identidade visual Premium</p>
+   <p><span>✦</span> Emblema especial de jogador</p>
+   <p><span>✦</span> Benefícios exclusivos futuros</p>
+   <p><span>✦</span> Possíveis recompensas especiais</p>
+  </div>
+  <div class="premium-status">
+   🔒 SISTEMA PREMIUM EM PREPARAÇÃO<br>
+   FUNÇÃO SERÁ LIBERADA NO LANÇAMENTO OFICIAL
+  </div>
+ </div>
+</section>
+
+<section id="resgate">
+ <div class="kicker">CENTRAL DO JOGADOR</div>
+ <h2 class="title">RESGATE DE <span>RECOMPENSAS</span></h2>
+ <p class="subtitle">Entre com seu ID de jogador WAR 3020.</p>
+ <div class="login-area">
+  <div class="login-box">
+   <div style="font-size:43px">👤</div>
+   <h3>PLAYER LOGIN</h3>
+   <p>Identifique sua conta pelo ID de jogador.</p>
+   <form id="loginForm">
+    <input id="playerID" type="text" placeholder="DIGITE SEU ID DE JOGADOR" maxlength="40" required>
+    <button class="btn btn-blue" style="width:100%" type="submit">ENTRAR NA CENTRAL</button>
+   </form>
+   <div id="message"></div>
+   <p class="login-warning">🔒 FUNÇÃO SERÁ LIBERADA NO LANÇAMENTO OFICIAL.</p>
+   <p style="font-size:14px;margin-top:12px">O ID é utilizado para identificar o jogador. O sistema de autenticação e resgate ainda será integrado.</p>
+  </div>
+ </div>
+</section>
+
+<section id="ajuda">
+ <div class="kicker">CENTRAL DE SUPORTE</div>
+ <h2 class="title">PERGUNTAS <span>FREQUENTES</span></h2>
+ <p class="subtitle">Tudo que você precisa saber sobre o WAR 3020.</p>
+ <div class="faq">
+  <details>
+   <summary>Como fazer o download do WAR 3020?</summary>
+   <p>O download será disponibilizado pelos canais oficiais no lançamento previsto para fevereiro de 2027.</p>
+  </details>
+  <details>
+   <summary>Quando o WAR 3020 será lançado?</summary>
+   <p>O pré-lançamento está previsto para fevereiro de 2027.</p>
+  </details>
+  <details>
+   <summary>Como ganhar o Conjunto Chama Azul?</summary>
+   <p>O conjunto será uma recompensa gratuita para os jogadores nas primeiras 24 horas após o lançamento oficial, conforme as regras do evento.</p>
+  </details>
+  <details>
+   <summary>Como resgatar minhas recompensas?</summary>
+   <p>Entre na Central do Jogador utilizando seu ID. A função será liberada no lançamento oficial.</p>
+  </details>
+  <details>
+   <summary>Para que serve o Cartão Premium?</summary>
+   <p>O Cartão Premium representa a área exclusiva de benefícios e vantagens especiais do WAR 3020. Os detalhes serão divulgados pela equipe.</p>
+  </details>
+  <details>
+   <summary>O login é feito pelo Cartão Premium?</summary>
+   <p>Não! O login é feito pelo ID da conta do jogador. O cartão Premium é uma área separada.</p>
+  </details>
+  <details>
+   <summary>Quem está desenvolvendo o WAR 3020?</summary>
+   <p>Estúdio Central Brasileiro × BHiosfhe.</p>
+  </details>
+ </div>
+</section>
+</main>
+
+<footer>
+ <div class="logo">WAR <span>3020</span></div>
+ <p>O FUTURO PERTENCE AOS SOBREVIVENTES.</p>
+ <p style="margin-top:15px">Desenvolvido por <strong>ESTÚDIO CENTRAL BRASILEIRO × BHiosfhe</strong></p>
+ <p style="margin-top:20px;font-size:13px">© 2026 WAR 3020 • Todos os direitos reservados.</p>
+</footer>
+
+<script>
+document.getElementById('loginForm').addEventListener('submit',function(e){
+ e.preventDefault();
+ const id=document.getElementById('playerID').value.trim();
+ const msg=document.getElementById('message');
+
+ if(id.length<5){
+  msg.textContent='ID inválido. Confira e tente novamente.';
+  return;
+ }
+
+ msg.textContent='🔒 Central de resgate bloqueada. Função será liberada no lançamento oficial!';
+});
+</script>
+
+</body>
+</html>
